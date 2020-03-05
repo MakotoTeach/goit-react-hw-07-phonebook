@@ -1,0 +1,12 @@
+.wrapper{
+  margin: auto;
+}
+.container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1170px;
+  min-height: 100vh;
+  padding: 20px;
+}

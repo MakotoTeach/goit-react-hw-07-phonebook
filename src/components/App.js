@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { uuid } from "uuidv4";
-import ContactList from "./ContactList";
+import Layout from "./Layout/Layout";
+import ContactList from "./ContactList/ContactList";
 import AddContactForm from "./AddContactForm/AddContactForm";
 import Filter from "./Filter/Filter";
+import ThemeContext from "../context/ThemeContext";
 
 export default class App extends Component {
   state = {
@@ -26,7 +28,6 @@ export default class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
     if (prevState.contacts !== this.state.cotacts) {
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
     }
@@ -73,20 +74,22 @@ export default class App extends Component {
     const { filter, contacts } = this.state;
     const visibleContacts = this.getVisibleContacts();
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <AddContactForm onAddContact={this.addContact} />
-        <h2>Contacts</h2>
-        {contacts.length > 2 && (
-          <Filter value={filter} onChangeFilter={this.changeFilter} />
-        )}
-        {visibleContacts.length > 0 && (
-          <ContactList
-            contacts={visibleContacts}
-            onRemoveContact={this.removeContact}
-          />
-        )}
-      </div>
+      <ThemeContext>
+        <Layout>
+          <h1>Phonebook</h1>
+          <AddContactForm onAddContact={this.addContact} />
+          <h2>Contacts</h2>
+          {contacts.length > 2 && (
+            <Filter value={filter} onChangeFilter={this.changeFilter} />
+          )}
+          {visibleContacts.length > 0 && (
+            <ContactList
+              contacts={visibleContacts}
+              onRemoveContact={this.removeContact}
+            />
+          )}
+        </Layout>
+      </ThemeContext>
     );
   }
 }

@@ -1,4 +1,4 @@
-@value input-width from '../vars.module.css';
+@value input-width from '../../vars.module.css';
 
 .filterLabel{
   display: flex;

@@ -5,8 +5,10 @@ import styles from './ContactListItem.module.css'
 function ContactListItem({ name, number, onRemove }) {
   return (
     <li className={styles.listItem}>
+      <div className={styles.nameLine}>
       <p>{name}:</p>
       <p>{number}</p>
+      </div>
       <button className={styles.listItemBtn}type="button" onClick={onRemove}>Delete</button>
     </li>
   );
