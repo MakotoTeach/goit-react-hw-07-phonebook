@@ -8,6 +8,7 @@ const Layout = ({children, theme}) => {
     <div  className={styles.wrapper} style={{background: theme.bodybg }} >
       <div className={styles.container} style={{ color: theme.fontColor, background: theme.layoutbg }}>
         <ThemeToogler />
+        <h1>Phonebook</h1>
         {children}
       </div>
     </div>

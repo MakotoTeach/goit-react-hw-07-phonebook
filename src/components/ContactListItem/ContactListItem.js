@@ -1,23 +1,30 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import styles from './ContactListItem.module.css'
+import { connect } from "react-redux";
+import contactsActions from "../../redux/contacs/contactsActions";
+import styles from "./ContactListItem.module.css";
 
 function ContactListItem({ name, number, onRemove }) {
   return (
     <li className={styles.listItem}>
       <div className={styles.nameLine}>
-      <p>{name}:</p>
-      <p>{number}</p>
+        <p>{name}:</p>
+        <p>{number}</p>
       </div>
-      <button className={styles.listItemBtn}type="button" onClick={onRemove}>Delete</button>
+      <button className={styles.listItemBtn} type="button" onClick={onRemove}>
+        Delete
+      </button>
     </li>
   );
 }
 
-ContactListItem.propTypes = {
-  name:PropTypes.string.isRequired,
-  number:PropTypes.string.isRequired,
-  onRemove:PropTypes.func.isRequired
-}
+const mapStateToProps = (state, ownProps) => {
+  const item = state.contacts.items.find(item => item.id === ownProps.id);
+  return { ...item };
+};
 
-export default ContactListItem;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onRemove: () => dispatch(contactsActions.removeContact(ownProps.id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactListItem);
+

@@ -1,4 +1,4 @@
-@value input-width from '../../vars.module.css';
+
 
 .filterLabel{
   display: flex;
@@ -6,5 +6,9 @@
 }
 
 .filterInput{
-  width: input-width;
+  composes: input from '../../styles/input.css';
+}
+
+.title{
+  text-align: center;
 }
