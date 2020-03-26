@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import contactsActions from "../../redux/contacs/contactsActions";
+import contactsOperations from "../../redux/contacs/contactsOperations";
 import styles from "./AddContactForm.module.css";
 
  class AddContactForm extends Component {
   state = {
     name: "",
     number: ""
-  };
+  };  
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -59,6 +59,6 @@ import styles from "./AddContactForm.module.css";
 }
 
 const mapDispatchToProps = {
-  onAddContact: contactsActions.addContact
+  onAddContact: contactsOperations.addContact
 };
 export default connect(null, mapDispatchToProps)(AddContactForm);

@@ -2,7 +2,7 @@ import React, { Component, createContext } from "react";
 
 const Context = createContext();
 
- const themeConfig = {
+const themeConfig = {
   light: {
     headerBg: "#F7B30C",
     fontColor: "black",
@@ -20,6 +20,24 @@ const Context = createContext();
 export default class ThemeContext extends Component {
   static Consumer = Context.Consumer;
 
+  componentDidMount() {
+    const themeLs = localStorage.getItem("theme");
+
+    if (themeLs) {
+      const parsedTheme = JSON.parse(themeLs);
+      this.setState({
+        themeType: parsedTheme,
+        theme: themeConfig[parsedTheme]
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.themeType !== this.state.themeType) {
+      localStorage.setItem("theme", JSON.stringify(this.state.themeType));
+    }
+  }
+
   toggleTheme = () => {
     const themeKind = this.state.themeType === "dark" ? "light" : "dark";
     this.setState({
@@ -31,7 +49,7 @@ export default class ThemeContext extends Component {
   state = {
     themeType: "light",
     theme: themeConfig.light,
-    toggleTheme: this.toggleTheme  
+    toggleTheme: this.toggleTheme
   };
 
   render() {

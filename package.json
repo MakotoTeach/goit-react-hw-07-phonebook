@@ -1,5 +1,5 @@
 {
-  "name": "goit-react-hw-06-phonebook",
+  "name": "goit-react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://MakotoTeach.github.io/goit-react-hw-06-phonebook",
@@ -8,9 +8,12 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
     "gh-pages": "^2.2.0",
+    "json-server": "^0.16.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-loader-spinner": "^3.1.5",
     "react-redux": "^7.2.0",
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
@@ -23,7 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "server": "json-server -p 2000 -d 250 -w db.json"
   },
   "eslintConfig": {
     "extends": "react-app"
